@@ -1,3 +1,2 @@
 # framework
-A collection of amateur frameworks built by themselves
-
+A collection of frameworks built by one's own amateurs
