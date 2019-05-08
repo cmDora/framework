@@ -7,6 +7,11 @@ module.exports = {
   entry: {
     main: './src/index.js',
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
+  },
   module: {
     rules: [{
       test: /\.js$/,
@@ -72,7 +77,6 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   output: {
-    publicPath: '/', // 所有打包生成的文件之间的引用前面都加一个根路径（不加也 ok，但是加上可确保不会有问题）
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
   },
