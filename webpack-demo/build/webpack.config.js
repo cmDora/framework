@@ -7,9 +7,37 @@ module.exports = {
   entry: {
     main: './src/index.js',
   },
+  // optimization: {
+  //   splitChunks: {
+  //     // chunks: 'all',
+  //     // cacheGroups: {
+  //     //   vendors: false,
+  //     //   default: false,
+  //     // }
+  //   }
+  // }
   optimization: {
     splitChunks: {
       chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          filename: 'vendors.js',
+        },
+        default: {
+          priority: -20,
+          reuseExistingChunk: false,
+          filename: 'common.js',
+        }
+      }
     }
   },
   module: {

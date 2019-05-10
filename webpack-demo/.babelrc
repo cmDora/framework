@@ -10,6 +10,6 @@
     "@babel/preset-react",
   ],
   plugins: [
-    "dynamic-import-webpack"
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }

@@ -33,7 +33,7 @@ import _ from 'lodash'
 // 此处省略 一万行 业务逻辑
 console.log(_.join(['a', 'b', 'c'], '**'))
 console.log(_.join(['a', 'b', 'c'], '***'))
-console.log(_.join(['a', 'b', 'c'], '***'))
+// console.log(_.join(['a', 'b', 'c'], '***'))
 
 // 注意：在平常项目中。同时并行加载两个 1mb 的文件，可能会比加载一个 2mb 的文件要快一点（但并不是绝对的）
 
@@ -49,16 +49,16 @@ console.log(_.join(['a', 'b', 'c'], '***'))
 // 异步载入的组件会自动的被打包到一个单独的文件里面（无需在 webpack 中配置 splitChunks）
 // 异步代码（无需任何配置，会自动进行代码分割）
 
-function getComponent() {
-  return import ('lodash').then(({
-    default: _ // 是用来做兼容的，兼容 commonjs
-  }) => {
-    var element = document.createElement('div')
-    element.innerHTML = _.join(['CM', 'Dora'], '-')
-    return element
-  })
-}
+// function getComponent() {
+//   return import ( /*webpackChunkName:"lodash"*/ 'lodash').then(({
+//     default: _ // 是用来做兼容的，兼容 commonjs
+//   }) => {
+//     var element = document.createElement('div')
+//     element.innerHTML = _.join(['CM', 'Dora'], '-')
+//     return element
+//   })
+// }
 
-getComponent().then((element) => {
-  document.body.appendChild(element)
-})
+// getComponent().then((element) => {
+//   document.body.appendChild(element)
+// })
