@@ -18,26 +18,26 @@ module.exports = {
   // }
   optimization: {
     splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          filename: 'vendors.js',
-        },
-        default: {
-          priority: -20,
-          reuseExistingChunk: false,
-          filename: 'common.js',
-        }
-      }
+      chunks: 'all', // 下面全是默认项，不做更改就不需要写。不过 chunks 的默认值其实是 async
+      // minSize: 30000,
+      // maxSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 5,
+      // maxInitialRequests: 3,
+      // automaticNameDelimiter: '~',
+      // name: true,
+      // cacheGroups: {
+      //   vendors: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     priority: -10,
+      //     // filename: 'vendors.js',
+      //   },
+      //   default: {
+      //     priority: -20,
+      //     reuseExistingChunk: false,
+      //     filename: 'common.js',
+      //   }
+      // }
     }
   },
   module: {

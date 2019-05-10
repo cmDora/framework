@@ -27,12 +27,12 @@
 // 结合 webpack 的 splitChunks
 // 同步代码
 
-import _ from 'lodash'
+// import _ from 'lodash'
 
-// 字符串连接功能，第二个参数是连接符的意思
-// 此处省略 一万行 业务逻辑
-console.log(_.join(['a', 'b', 'c'], '**'))
-console.log(_.join(['a', 'b', 'c'], '***'))
+// // 字符串连接功能，第二个参数是连接符的意思
+// // 此处省略 一万行 业务逻辑
+// console.log(_.join(['a', 'b', 'c'], '**'))
+// console.log(_.join(['a', 'b', 'c'], '***'))
 // console.log(_.join(['a', 'b', 'c'], '***'))
 
 // 注意：在平常项目中。同时并行加载两个 1mb 的文件，可能会比加载一个 2mb 的文件要快一点（但并不是绝对的）
@@ -59,6 +59,25 @@ console.log(_.join(['a', 'b', 'c'], '***'))
 //   })
 // }
 
-// getComponent().then((element) => {
-//   document.body.appendChild(element)
+// document.addEventListener('click', () => {
+//   getComponent().then((element) => {
+//     document.body.appendChild(element)
+//   })
 // })
+
+// 异步函数式写法
+async function getComponent() {
+  const {
+    default: _
+  } = await
+  import ( /*webpackChunkName:"lodash"*/ 'lodash')
+  const element = document.createElement('div')
+  element.innerHTML = _.join(['CM', 'Dora'], '-')
+  return element
+}
+
+document.addEventListener('click', () => {
+  getComponent().then((element) => {
+    document.body.appendChild(element)
+  })
+})
