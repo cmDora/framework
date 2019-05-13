@@ -105,7 +105,7 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
   },
 }
