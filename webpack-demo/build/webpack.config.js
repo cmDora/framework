@@ -8,8 +8,8 @@ module.exports = {
     main: './src/index.js',
   },
   // optimization: {
-  //   splitChunks: {
-  //     // chunks: 'all',
+  // splitChunks: {
+  // chunks: 'all',
   //     // cacheGroups: {
   //     //   vendors: false,
   //     //   default: false,
@@ -17,6 +17,16 @@ module.exports = {
   //   }
   // }
   optimization: {
+    // splitChunks: {
+    //   cacheGroups: {
+    //     styles: {
+    //       name: 'styles',
+    //       test: /\.css$/,
+    //       chunks: 'all',
+    //       enforce: true,
+    //     }
+    //   }
+    // }
     splitChunks: {
       chunks: 'all', // 下面全是默认项，不做更改就不需要写。不过 chunks 的默认值其实是 async
       // minSize: 30000,
@@ -72,30 +82,6 @@ module.exports = {
           limit: 20840
         }
       }
-    }, {
-      test: /\.css$/,
-      use: [
-        'style-loader', {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2,
-            // modules: true,
-          },
-        },
-      ]
-    }, {
-      test: /\.scss$/,
-      use: [
-        'style-loader', {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2,
-            // modules: true,
-          }
-        },
-        'sass-loader',
-        'postcss-loader',
-      ]
     }]
   },
   plugins: [
@@ -106,6 +92,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].js',
+    // chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, '../dist'),
   },
 }
