@@ -1,4 +1,7 @@
-import './style.css'
-import './style1.css'
+// console.log('All lives end, all hearts are broken. Caring is not an advantage!')
+import _ from 'lodash'
+import $ from 'jquery'
 
-console.log('All lives end, all hearts are broken. Caring is not an advantage!')
+const dom = $('div')
+dom.html(_.join(['CM', 'Dora'], '---1111111'))
+$('body').append(dom)

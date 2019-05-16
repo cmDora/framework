@@ -5,7 +5,7 @@ const config = require('./webpack.config.js')
 
 const prodConfig = {
   mode: 'production',
-  devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-module-source-map',
   module: {
     rules: [{
       test: /\.css$/,
@@ -41,10 +41,14 @@ const prodConfig = {
       filename: '[name].css',
       chunkFilename: '[name].chunk.css'
     })
-  ]
+  ],
   // optimization: {
   //   usedExports: true,
   // },
+  output: { // hash 或者 contenthash 都能达到一样的效果
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].chunk.js'
+  }
 }
 
 module.exports = merge(config, prodConfig)

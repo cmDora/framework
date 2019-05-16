@@ -27,6 +27,9 @@ module.exports = {
     //     }
     //   }
     // }
+    runtimeChunk: {
+      name: 'runtime'
+    },
     splitChunks: {
       chunks: 'all', // 下面全是默认项，不做更改就不需要写。不过 chunks 的默认值其实是 async
       // minSize: 30000,
@@ -84,15 +87,20 @@ module.exports = {
       }
     }]
   },
+  performance: false, // 不让命令板提示我们性能上的问题（警告）
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
     new CleanWebpackPlugin(),
   ],
+  // manifest // 旧版本 webpack 因为这个的差异，每次打包内容没发生改变 hash 就会改变
+  // optimization: {  // runtimeChunk 就是处理旧版本 webpack manifest 带来的问题。当然新版本也可以写，写了也没有问题，只是多了个 runtime 的文件，里面就是 manifest 的相关代码
+  //   runtimeChunk: {
+  //     name: 'runtime',
+  //   },
+  // },
   output: {
-    filename: '[name].js',
-    // chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, '../dist'),
   },
 }
