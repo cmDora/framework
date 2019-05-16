@@ -27,9 +27,6 @@ module.exports = {
     //     }
     //   }
     // }
-    runtimeChunk: {
-      name: 'runtime'
-    },
     splitChunks: {
       chunks: 'all', // 下面全是默认项，不做更改就不需要写。不过 chunks 的默认值其实是 async
       // minSize: 30000,
@@ -57,24 +54,29 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
-      options: {
-        // presets: [
-        //   ['@babel/preset-env', {
-        //     useBuiltIns: 'usage',
-        //     corejs: 3,
-        //   }],
-        //   "@babel/preset-react",
-        // ],
-        // 'plugins': [
-        //   ['@babel/plugin-transform-runtime', {
-        //     'corejs': 2,  
-        //     'helpers': true,
-        //     'regenerator': true,
-        //     'useESModules': false,
-        //   }]
-        // ]
-      },
+      use: [{
+        loader: 'babel-loader'
+      }, {
+        loader: 'imports-loader?this=>window'
+      }],
+      // 很奇怪，使用 imports-loader 的话，use和options不能同时出现，否则就会报错
+      // options: {
+      // presets: [
+      //   ['@babel/preset-env', {
+      //     useBuiltIns: 'usage',
+      //     corejs: 3,
+      //   }],
+      //   "@babel/preset-react",
+      // ],
+      // 'plugins': [
+      //   ['@babel/plugin-transform-runtime', {
+      //     'corejs': 2,  
+      //     'helpers': true,
+      //     'regenerator': true,
+      //     'useESModules': false,
+      //   }]
+      // ]
+      // },
     }, {
       test: /\.jpg$/,
       use: {
@@ -93,6 +95,10 @@ module.exports = {
       template: 'src/index.html',
     }),
     new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      // _join: ['lodash', 'join']
+    })
   ],
   // manifest // 旧版本 webpack 因为这个的差异，每次打包内容没发生改变 hash 就会改变
   // optimization: {  // runtimeChunk 就是处理旧版本 webpack manifest 带来的问题。当然新版本也可以写，写了也没有问题，只是多了个 runtime 的文件，里面就是 manifest 的相关代码
